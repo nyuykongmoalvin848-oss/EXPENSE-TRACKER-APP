@@ -129,31 +129,12 @@ h3 {
   color: #888;
 }
 
-.delete-btn {
-  cursor: pointer;
-  background-color: #e74c3c;
-  border: 0;
-  color: #fff;
-  font-size: 20px;
-  line-height: 22px;
-  padding: 2px 8px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-100%, -50%);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  border-radius: 4px 0 0 4px;
-}
-
 label {
   display: inline-block;
   margin: 10px 0;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"] {
+input {
   border: 3px solid #dedede;
   border-radius: 10px;
   display: block;
