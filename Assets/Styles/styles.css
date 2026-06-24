@@ -44,13 +44,9 @@ h3 {
   border-radius: 4px;
 }
 
-.container3 > div {
+.container3 div {
   flex: 1;
   text-align: center;
-}
-
-.container3 > div:first-of-type {
-  border-right: 1px solid #dedede;
 }
 
 .money {
@@ -163,7 +159,7 @@ input {
     gap: 15px;
   }
 
-  .container3 > div:first-of-type {
+  .container3 div:first-of-type {
     border-right: none;
     border-bottom: 1px solid #dedede;
     padding-bottom: 15px;
