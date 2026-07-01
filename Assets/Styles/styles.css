@@ -39,9 +39,8 @@ h3 {
   box-shadow: var(--box-shadow);
   padding: 20px;
   display: flex;
-  justify-content: space-between;
   margin: 20px 0;
-  border-radius: 4px;
+  border-radius: 25px
 }
 
 .container3 div {
@@ -61,19 +60,6 @@ h3 {
 
 .money-deducted {
   color: #c0392b;
-}
-
-.container4 {
-  margin-bottom: 20px;
-}
-
-.bar {
-  display: flex;
-  height: 20px;
-  width: 100%;
-  background-color: rgb(224 219 219);
-  border-radius: 50px;
-  overflow: hidden;
 }
 
 .income-background {
@@ -140,17 +126,15 @@ input {
 }
 
 .btn {
-  cursor: pointer;
   background-color: #736e6e;
-  box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
   display: block;
-  font-size: 16px;
-  margin: 20px 0 30px;
+  font-size: 15px;
+  margin: 20px 100px 30px;
   padding: 10px;
-  width: 100%;
-  border-radius: 4px;
+  width: 50%;
+  border-radius: 15px;
 }
 
 @media (max-width: 768px) {
