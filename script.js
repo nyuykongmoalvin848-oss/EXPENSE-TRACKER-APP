@@ -7,9 +7,8 @@ const text = document.getElementById('text')
 const amount = document.getElementById('amount')
 const dateInput = document.getElementById('date')
 const filter = document.getElementById('filter')
-const progressBar = document.querySelector('.bar')
 
-let transactions = JSON.parse(localStorage.getItem('transactions')) || []
+const transactions = JSON.parse(localStorage.getItem('transactions')) || []
 
 function addTransaction (e) {
   e.preventDefault()
@@ -29,12 +28,6 @@ function addTransaction (e) {
 
 function generateID () {
   return Math.floor(Math.random() * 100000000)
-}
-
-function deleteTransaction (id) {
-  transactions = transactions.filter((t) => t.id !== id)
-  updateLocalStorage()
-  updateDOM()
 }
 
 function updateDOM () {
