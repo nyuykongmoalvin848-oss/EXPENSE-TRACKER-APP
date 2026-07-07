@@ -1,6 +1,6 @@
 const balance = document.querySelector('.balance')
-const moneyAdded = document.querySelector('.money-added')
-const moneyDeducted = document.querySelector('.money-deducted')
+const money_added = document.querySelector('.money-added')
+const money_deducted = document.querySelector('.money-deducted')
 const list = document.querySelector('.list')
 const form = document.getElementById('form')
 const text = document.getElementById('text')
@@ -8,7 +8,20 @@ const amount = document.getElementById('amount')
 const dateInput = document.getElementById('date')
 const filter = document.getElementById('filter')
 
-const transactions = JSON.parse(localStorage.getItem('transactions')) || []
+const localStorageTransactions = JSON.parse(
+  localStorage.getItem('transactions')
+)
+
+let transactions =
+  localStorage.getItem('transactions') !== null ? localStorageTransactions : []
+
+function deleteTransaction (id) {
+  transactions = transactions.filter((transaction) => transaction.id !== id)
+
+  updateLocalStorage()
+
+  updateDOM()
+}
 
 function addTransaction (e) {
   e.preventDefault()
@@ -21,8 +34,10 @@ function addTransaction (e) {
   }
 
   transactions.push(transaction)
-  updateDOM()
+  addTransactionDOM(transaction)
+  updateValues()
   updateLocalStorage()
+
   form.reset()
 }
 
@@ -30,30 +45,23 @@ function generateID () {
   return Math.floor(Math.random() * 100000000)
 }
 
-function updateDOM () {
-  const currentFilter = filter.value
-  list.innerHTML = ''
+function addTransactionDOM (transaction) {
+  const sign = transaction.amount < 0 ? '-' : '+'
+  const item = document.createElement('li')
 
-  const filteredTransactions = transactions.filter((t) => {
-    if (currentFilter === 'income') return t.amount > 0
-    if (currentFilter === 'expense') return t.amount < 0
-    return true
-  })
+  item.classList.add(transaction.amount < 0 ? 'minus' : 'plus')
 
-  filteredTransactions.forEach((t) => {
-    const sign = t.amount < 0 ? '-' : '+'
-    const itemClass = t.amount < 0 ? 'minus' : 'plus'
-    const li = document.createElement('li')
+  item.innerHTML = `
+    ${transaction.text} <span>${sign}$${Math.abs(transaction.amount).toFixed(2)}</span>
+    <button class="delete-btn" data-id="${transaction.id}">x</button>
+  `
 
-    li.className = itemClass
-    li.innerHTML = `
-      ${t.text} <span>${t.date}</span> <span>${sign}$${Math.abs(t.amount).toFixed(2)}</span>
-      <button class="delete-btn" onclick="deleteTransaction(${t.id})">x</button>
-    `
-    list.appendChild(li)
-  })
+  list.appendChild(item)
+}
 
-  const amounts = transactions.map((t) => t.amount)
+function updateValues () {
+  const amounts = transactions.map((transaction) => transaction.amount)
+
   const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
 
   const income = amounts
@@ -66,16 +74,42 @@ function updateDOM () {
     -1
   ).toFixed(2)
 
-  balance.innerText = `${total < 0 ? '-' : ''}$${Math.abs(total).toFixed(2)}`
-  moneyAdded.innerText = `+$${income}`
-  moneyDeducted.innerText = `-$${expense}`
+  balance.innerText = `$${total}`
+  money_added.innerText = `+$${income}`
+  money_deducted.innerText = `-$${expense}`
 }
 
 function updateLocalStorage () {
   localStorage.setItem('transactions', JSON.stringify(transactions))
 }
 
+function updateDOM () {
+  list.innerHTML = ''
+
+  const filterValue = filter.value
+
+  transactions.forEach((transaction) => {
+    if (filterValue === 'all') {
+      addTransactionDOM(transaction)
+    } else if (filterValue === 'income' && transaction.amount > 0) {
+      addTransactionDOM(transaction)
+    } else if (filterValue === 'expense' && transaction.amount < 0) {
+      addTransactionDOM(transaction)
+    }
+  })
+
+  updateValues()
+}
+
 form.addEventListener('submit', addTransaction)
+
 filter.addEventListener('change', updateDOM)
+
+list.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-btn')) {
+    const transactionId = parseInt(e.target.dataset.id)
+    deleteTransaction(transactionId)
+  }
+})
 
 updateDOM()
