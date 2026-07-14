@@ -60,6 +60,8 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_BASH: false
+          LOG_LEVEL: DEBUG
           EXCLUDED_DIRECTORIES: "node_modules,vendor"
           VALIDATE_JSCPD: false
           FILTER_REGEX_EXCLUDE: ".*tests/.*"
