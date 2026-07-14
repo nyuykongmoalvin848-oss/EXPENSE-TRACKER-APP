@@ -1,6 +1,7 @@
+/* global localStorage */
 const balance = document.querySelector('.balance')
-const money_added = document.querySelector('.money-added')
-const money_deducted = document.querySelector('.money-deducted')
+const moneyAdded = document.querySelector('.money-added')
+const moneyDeducted = document.querySelector('.money-deducted')
 const list = document.querySelector('.list')
 const form = document.getElementById('form')
 const text = document.getElementById('text')
@@ -75,8 +76,8 @@ function updateValues () {
   ).toFixed(2)
 
   balance.innerText = `$${total}`
-  money_added.innerText = `+$${income}`
-  money_deducted.innerText = `-$${expense}`
+  moneyAdded.innerText = `+$${income}`
+  moneyDeducted.innerText = `-$${expense}`
 }
 
 function updateLocalStorage () {
