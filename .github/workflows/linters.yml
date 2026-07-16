@@ -8,7 +8,7 @@ name: Lint Code Base
 
 #
 # Documentation:
-# https://github.com
+# https://github.com/super-linter/super-linter
 #
 
 #############################
@@ -55,7 +55,7 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: github/super-linter@v4
+        uses: super-linter/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
@@ -64,4 +64,4 @@ jobs:
           LOG_LEVEL: DEBUG
           EXCLUDED_DIRECTORIES: "node_modules,vendor"
           VALIDATE_JSCPD: false
-          FILTER_REGEX_EXCLUDE: ".*tests/.*"
+          FILTER_REGEX_EXCLUDE: ".*(node_modules|vendor|test-data)/.*"
