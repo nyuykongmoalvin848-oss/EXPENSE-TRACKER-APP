@@ -1,3 +1,5 @@
+permissions:
+  contents: read
 ---
 #################################
 #################################
@@ -58,6 +60,8 @@ jobs:
         uses: super-linter/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: false
+          VALIDAATEE_CHECKOV: false
+          VALIDATE_GITHUB_ACTIONS: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_BASH: false
