@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0 0 0 0.12), 0 1px 2px rgba(0 0 0 0.24);
 }
 
 body {
@@ -93,11 +93,11 @@ h3 {
   border-radius: 4px;
 }
 
-.list li.added {
+.list li.plus {
   border-right: 5px solid #2ecc71;
 }
 
-.list li.deducted {
+.list li.minus {
   border-right: 5px solid #c0392b;
 }
 
