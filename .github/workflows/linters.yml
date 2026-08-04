@@ -1,11 +1,3 @@
-permissions:
-  contents: read
----
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
 name: Lint Code Base
 
 #
@@ -22,6 +14,9 @@ on:
     # Remove the line above to run when pushing to master
   pull_request:
     branches: [master, main]
+
+permissions:
+  contents: read
 
 ###############
 # Set the Job #
@@ -60,7 +55,8 @@ jobs:
         uses: super-linter/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: false
-          VALIDAATEE_CHECKOV: false
+          # FIX: Spelled correctly with a single 'A' and single 'E' to disable Checkov successfully
+          VALIDATE_CHECKOV: false
           VALIDATE_GITHUB_ACTIONS: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
