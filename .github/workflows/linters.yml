@@ -1,57 +1,33 @@
 name: Lint Code Base
 
-#
-# Documentation:
-# https://github.com/super-linter/super-linter
-#
-
-#############################
-# Start the job on all push #
-#############################
 on:
   push:
-    branches-ignore: [master, main]
-    # Remove the line above to run when pushing to master
+    branches-ignore:
+      - master
+      - main
   pull_request:
-    branches: [master, main]
+    branches:
+      - master
+      - main
 
 permissions:
   contents: read
 
-###############
-# Set the Job #
-###############
 jobs:
   build:
-    # Name the Job
     name: Lint Code Base
-    # Set the agent to run on
     runs-on: ubuntu-latest
 
-    ##################
-    # Load all steps #
-    ##################
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
       - name: Checkout Code
-        uses: actions/checkout@v4  # Upgraded to v4 to fix legacy Node runtime execution warnings
+        uses: actions/checkout@v4
         with:
-          # Full git history is needed to get a proper
-          # list of changed files within `super-linter`
           fetch-depth: 0
 
-      ###########################################################
-      # Fix Git ownership issues to safely accept cloned repos  #
-      ###########################################################
       - name: Add workspace to git safe directories
         run: git config --global --add safe.directory /github/workspace
 
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint Code Base
+      - name: Run Linter against code base
         uses: super-linter/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: false
@@ -62,5 +38,4 @@ jobs:
           VALIDATE_BASH: false
           LOG_LEVEL: DEBUG
           VALIDATE_JSCPD: false
-          
           FILTER_REGEX_EXCLUDE: "(^|/)(node_modules|vendor|test-data)/.*"
