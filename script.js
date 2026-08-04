@@ -16,12 +16,12 @@ const localStorageTransactions = JSON.parse(
 let transactions =
   localStorage.getItem("transactions") !== null ? localStorageTransactions : [];
 
-
 function deleteTransaction(id) {
-  
   const numericId = Number(id);
 
-  transactions = transactions.filter((transaction) => transaction.id !== numericId);
+  transactions = transactions.filter(
+    (transaction) => transaction.id !== numericId,
+  );
 
   updateLocalStorage();
 
@@ -29,28 +29,22 @@ function deleteTransaction(id) {
 }
 
 function addTransaction(e) {
- 
   e.preventDefault();
 
-  
   const transaction = {
-    id: generateID(),           
-    text: text.value,           
-    amount: +amount.value,      
-    date: dateInput.value,     
+    id: generateID(),
+    text: text.value,
+    amount: +amount.value,
+    date: dateInput.value,
   };
 
-  
   transactions.push(transaction);
-  
-  
+
   addTransactionDOM(transaction);
-  
-  
+
   updateValues();
   updateLocalStorage();
 
-  
   form.reset();
 }
 
@@ -59,43 +53,34 @@ function generateID() {
 }
 
 function addTransactionDOM(transaction) {
-  
   const sign = transaction.amount < 0 ? "-" : "+";
   const item = document.createElement("li");
 
-  
   item.classList.add(transaction.amount < 0 ? "minus" : "plus");
 
-  
   item.innerHTML = `
     ${transaction.text} <span>${sign}$${Math.abs(transaction.amount).toFixed(2)}</span>
     <button class="delete-btn" data-id="${transaction.id}">x</button>
   `;
 
-  
   list.appendChild(item);
 }
 
 function updateValues() {
-  
   const amounts = transactions.map((transaction) => transaction.amount);
 
-  
   const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
-  
   const income = amounts
     .filter((item) => item > 0)
     .reduce((acc, item) => (acc += item), 0)
     .toFixed(2);
 
-  
   const expense = (
     amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) *
     -1
   ).toFixed(2);
 
-  
   balance.innerText = `$${total}`;
   moneyAdded.innerText = `+$${income}`;
   moneyDeducted.innerText = `-$${expense}`;
@@ -106,18 +91,14 @@ function updateLocalStorage() {
 }
 
 function updateDOM() {
-  
   list.innerHTML = "";
 
-  
   const filterValue = filter.value;
 
-  
   const amounts = transactions.map((transaction) => transaction.amount);
   const total = amounts.reduce((acc, item) => (acc += item), 0);
   balance.innerText = `$${total.toFixed(2)}`;
 
-  
   transactions.forEach((transaction) => {
     if (filterValue === "all") {
       addTransactionDOM(transaction);
@@ -128,7 +109,6 @@ function updateDOM() {
     }
   });
 
-  
   updateValues();
 }
 
@@ -138,7 +118,6 @@ filter.addEventListener("change", updateDOM);
 
 list.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
-    
     const transactionId = Number(e.target.dataset.id);
     deleteTransaction(transactionId);
   }
