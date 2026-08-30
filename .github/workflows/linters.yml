@@ -26,7 +26,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
           persist-credentials: false
 
       ###########################################################
@@ -47,21 +46,16 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSCPD: false
-
           VALIDATE_CHECKOV: false
-
           DISABLE_ERRORS_STATUS_API: true
           FILTER_REGEX_EXCLUDE: ".*tests/.*"
 
-          
           VALIDATE_HTML_PRETTIER: false
           VALIDATE_JSON_PRETTIER: false
           VALIDATE_MARKDOWN_PRETTIER: false
-          
-          
           VALIDATE_NATURAL_LANGUAGE: false
-          
           
           VALIDATE_JAVASCRIPT_PRETTIER: true
           VALIDATE_JAVASCRIPT_ES: false
+          
           VALIDATE_JAVASCRIPT_STANDARD: false
