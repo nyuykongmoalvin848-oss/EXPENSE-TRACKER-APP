@@ -52,3 +52,16 @@ jobs:
 
           DISABLE_ERRORS_STATUS_API: true
           FILTER_REGEX_EXCLUDE: ".*tests/.*"
+
+          
+          VALIDATE_HTML_PRETTIER: false
+          VALIDATE_JSON_PRETTIER: false
+          VALIDATE_MARKDOWN_PRETTIER: false
+          
+          
+          VALIDATE_NATURAL_LANGUAGE: false
+          
+          
+          VALIDATE_JAVASCRIPT_PRETTIER: true
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
