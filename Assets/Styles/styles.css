@@ -20,7 +20,7 @@ body {
 }
 
 .tracker {
-  justify-items: center;
+  text-align: center;
   font-size: larger;
 }
 
