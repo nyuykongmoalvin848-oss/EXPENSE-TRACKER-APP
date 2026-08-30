@@ -40,7 +40,7 @@ function addTransaction(e) {
 
   transactions.push(transaction);
 
-  addTransactionDOM(transaction);
+  updateDOM();
 
   updateValues();
   updateLocalStorage();
