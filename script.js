@@ -16,17 +16,13 @@ const localStorageTransactions = JSON.parse(
 let transactions =
   localStorage.getItem("transactions") !== null ? localStorageTransactions : [];
 
-function deleteTransaction(id) {
-  const numericId = Number(id);
-
-  transactions = transactions.filter(
-    (transaction) => transaction.id !== numericId,
-  );
-
-  updateLocalStorage();
-
-  updateDOM();
-}
+window.deleteTransaction = function (id) {
+  if (confirm("Are you sure you want to delete this transaction?")) {
+    transactions = transactions.filter((transaction) => transaction.id !== id);
+    updateLocalStorage();
+    updateDOM();
+  }
+};
 
 function addTransaction(e) {
   e.preventDefault();
