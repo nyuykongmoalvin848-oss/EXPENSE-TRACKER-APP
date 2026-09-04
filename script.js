@@ -65,21 +65,19 @@ function addTransactionDOM(transaction) {
 function updateValues() {
   const amounts = transactions.map((transaction) => transaction.amount);
 
-  const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+  const total = amounts.reduce((acc, item) => (acc += item), 0);
 
   const income = amounts
     .filter((item) => item > 0)
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
+    .reduce((acc, item) => (acc += item), 0);
 
   const expense = (
-    amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) *
-    -1
-  ).toFixed(2);
+    amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) * -1
+  );
 
-  balance.innerText = `$${total}`;
-  moneyAdded.innerText = `+$${income}`;
-  moneyDeducted.innerText = `-$${expense}`;
+  balance.innerText = `$${total.toFixed(2)}`;
+  moneyAdded.innerText = `+$${income.toFixed(2)}`;
+  moneyDeducted.innerText = `-$${expense.toFixed(2)}`;
 }
 
 function updateLocalStorage() {
