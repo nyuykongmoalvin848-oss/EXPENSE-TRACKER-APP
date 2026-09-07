@@ -3,7 +3,7 @@
 ## Super Linter GitHub Actions ##
 #################################
 #################################
-name: Lint Code Base
+name: Lint Codebase
 
 on:
   push:
@@ -13,11 +13,12 @@ on:
 
 jobs:
   build:
-    name: Lint Code Base
+    name: Lint Codebase
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
+      statuses: write
     steps:
       ##########################
       # Checkout the code base #
@@ -39,7 +40,7 @@ jobs:
       ################################
       # Run Linter against code base #
       ################################
-      - name: Lint Code Base
+      - name: Lint Codebase
         uses: super-linter/super-linter@v7
         env:
           
