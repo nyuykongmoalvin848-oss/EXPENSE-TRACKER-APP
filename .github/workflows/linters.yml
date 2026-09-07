@@ -1,8 +1,3 @@
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
 name: Lint Codebase
 
 on:
@@ -20,26 +15,17 @@ jobs:
       pull-requests: write
       statuses: write
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
       - name: Checkout Code
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      ###########################################################
-      # Fix Git ownership issues to safely accept cloned repos  #
-      ###########################################################
       - name: Add workspace to git safe directories
         run: |
           git config --global --add safe.directory /github/workspace
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      ################################
-      # Run Linter against code base #
-      ################################
       - name: Lint Codebase
         uses: super-linter/super-linter@v7
         env:

@@ -1,4 +1,3 @@
-/* global localStorage, confirm, deleteTransaction */
 const balance = document.querySelector('.balance')
 const moneyAdded = document.querySelector('.money-added')
 const moneyDeducted = document.querySelector('.money-deducted')
