@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "standard": "^17.1.2",
+    "stylelint-config-standard": "^40.0.0"
+  },
+  "standard": {
+    "env": [
+      "browser"
+    ]
+  }
+}

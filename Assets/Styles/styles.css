@@ -1,0 +1,166 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+}
+
+body {
+  background-color: #707977;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 10px;
+  overflow-x: hidden;
+}
+
+.container1 {
+  width: 500px;
+  max-width: 100%;
+}
+
+.tracker {
+  text-align: center;
+  font-size: larger;
+}
+
+h3 {
+  padding-bottom: 10px;
+  margin: 40px 0 10px;
+}
+
+.container2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container3 {
+  background-color: #736e6e;
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  display: flex;
+  margin: 20px 0;
+  border-radius: 25px;
+}
+
+.container3 div {
+  flex: 1;
+  text-align: center;
+}
+
+.money {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin: 5px 0;
+}
+
+.money-added {
+  color: #2ecc71;
+}
+
+.money-deducted {
+  color: #c0392b;
+}
+
+.income-background {
+  background-color: #2ecc71;
+}
+
+.expense-background {
+  background-color: #c0392b;
+}
+
+.container5 {
+  margin-bottom: 15px;
+  width: 50%;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.list li {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.list li.plus {
+  border-right: 5px solid #2ecc71;
+}
+
+.list li.minus {
+  border-right: 5px solid #c0392b;
+}
+
+.list-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-date {
+  font-size: 11px;
+  color: #888;
+}
+
+label {
+  display: inline-block;
+  margin: 10px 0;
+}
+
+input {
+  border: 3px solid #dedede;
+  border-radius: 10px;
+  display: block;
+  font-size: 15px;
+  padding: 10px;
+  width: 100%;
+}
+
+#text,
+#amount,
+#date {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+
+.btn {
+  display: block;
+  width: 50%;
+  margin: 20px auto 30px;
+}
+
+@media (width <= 768px) {
+  .container3 {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .container3 div:first-of-type {
+    border-right: none;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 15px;
+  }
+
+  .container5 {
+    width: 100%;
+  }
+}
