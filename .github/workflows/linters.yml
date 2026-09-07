@@ -45,8 +45,7 @@ jobs:
           
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_JAVASCRIPT_PRETTIER: false 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           DISABLE_ERRORS_STATUS_API: true
           FILTER_REGEX_EXCLUDE: ".*tests/.*"
 
