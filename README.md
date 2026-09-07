@@ -6,7 +6,7 @@ A tracker app built with HTML, CSS and JS. It helps users monitor their finance 
 
 ## Features
 
- Input descriptions and amounts (positive values for income, negative values for expenses).
+Input descriptions and amounts (positive values for income, negative values for expenses).
 
 **Storage:**
 
