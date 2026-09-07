@@ -8,12 +8,15 @@ const amount = document.getElementById("amount");
 const dateInput = document.getElementById("date");
 const filter = document.getElementById("filter");
 
-const localStorageTransactions = JSON.parse(
-  localStorage.getItem("transactions"),
-);
 
-let transactions =
-  localStorage.getItem("transactions") !== null ? localStorageTransactions : [];
+let transactions = [];
+try {
+  const localStorageTransactions = localStorage.getItem('transactions');
+  transactions = localStorageTransactions !== null ? JSON.parse(localStorageTransactions) : [];
+} catch (error) {
+  console.error("Failed to parse transactions from localStorage, resetting to empty array:", error);
+  transactions = [];
+}
 
 window.deleteTransaction = function (id) {
   if (confirm("Are you sure you want to delete this transaction?")) {
