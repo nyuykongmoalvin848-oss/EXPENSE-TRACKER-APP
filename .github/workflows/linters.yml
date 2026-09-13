@@ -29,17 +29,13 @@ jobs:
       - name: Lint Codebase
         uses: super-linter/super-linter@v7
         env:
-          
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_ERRORS_STATUS_API: true
           FILTER_REGEX_EXCLUDE: ".*tests/.*"
-
-          
           VALIDATE_CSS: false
           VALIDATE_JAVASCRIPT_PRETTIER: false
-          
           VALIDATE_CHECKOV: false
           VALIDATE_NATURAL_LANGUAGE: false
-          VALIDATE_JAVASCRIPT_STANDARD: false 
+          VALIDATE_JAVASCRIPT_STANDARD: false
