@@ -45,9 +45,7 @@ function addTransaction(e) {
 
   updateDOM();
 
-  updateValues();
   updateLocalStorage();
-
   form.reset();
 }
 
@@ -61,15 +59,25 @@ function addTransactionDOM(transaction) {
 
   item.classList.add(transaction.amount < 0 ? "minus" : "plus");
 
+  const detailsSpan = document.createElement("span");
+  detailsSpan.classList.add("list-details");
+  detailsSpan.textContent = transaction.text;
+
+  const dateSpan = document.createElement("span");
+  dateSpan.classList.add("list-date");
+  dateSpan.textContent = transaction.date ? transaction.date : "";
+
   item.innerHTML = `
-    <span class="list-details">${transaction.text}</span>
-    <span class="list-date">${transaction.date}</span>
     <span>${sign}$${Math.abs(transaction.amount).toFixed(2)}</span>
     <button class="delete-btn" data-id="${transaction.id}">x</button>
   `;
 
+  item.prepend(dateSpan);
+  item.prepend(detailsSpan);
+
   list.appendChild(item);
 }
+
 
 function updateValues() {
   const amounts = transactions.map((transaction) => transaction.amount);
@@ -98,9 +106,7 @@ function updateDOM() {
 
   const filterValue = filter.value;
 
-  const amounts = transactions.map((transaction) => transaction.amount);
-  const total = amounts.reduce((acc, item) => (acc += item), 0);
-  balance.innerText = `$${total.toFixed(2)}`;
+  
 
   transactions.forEach((transaction) => {
     if (filterValue === "all") {
@@ -116,7 +122,6 @@ function updateDOM() {
 }
 
 form.addEventListener("submit", addTransaction);
-
 filter.addEventListener("change", updateDOM);
 
 list.addEventListener("click", (e) => {
