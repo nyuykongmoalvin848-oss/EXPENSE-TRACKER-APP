@@ -23,13 +23,13 @@ try {
   transactions = [];
 }
 
-window.deleteTransaction = function (id) {
+function deleteTransaction(id) {
   if (confirm("Are you sure you want to delete this transaction?")) {
     transactions = transactions.filter((transaction) => transaction.id !== id);
     updateLocalStorage();
     updateDOM();
   }
-};
+}
 
 function addTransaction(e) {
   e.preventDefault();
@@ -65,7 +65,7 @@ function addTransactionDOM(transaction) {
     <span class="list-details">${transaction.text}</span>
     <span class="list-date">${transaction.date}</span>
     <span>${sign}$${Math.abs(transaction.amount).toFixed(2)}</span>
-    <button class="delete-btn" onclick="deleteTransaction(${transaction.id})">x</button>
+    <button class="delete-btn" data-id="${transaction.id}">x</button>
   `;
 
   list.appendChild(item);
@@ -118,5 +118,13 @@ function updateDOM() {
 form.addEventListener("submit", addTransaction);
 
 filter.addEventListener("change", updateDOM);
+
+
+list.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    const transactionId = Number(e.target.dataset.id);
+    deleteTransaction(transactionId);
+  }
+});
 
 updateDOM();
