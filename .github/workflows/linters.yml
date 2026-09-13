@@ -1,0 +1,41 @@
+name: Lint Codebase
+
+on:
+  push:
+    branches-ignore: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    name: Lint Codebase
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      statuses: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Add workspace to git safe directories
+        run: |
+          git config --global --add safe.directory /github/workspace
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Lint Codebase
+        uses: super-linter/super-linter@v7
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLE_ERRORS_STATUS_API: true
+          FILTER_REGEX_EXCLUDE: ".*tests/.*"
+          VALIDATE_CSS: false
+          VALIDATE_JAVASCRIPT_PRETTIER: false
+          VALIDATE_CHECKOV: false
+          VALIDATE_NATURAL_LANGUAGE: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
