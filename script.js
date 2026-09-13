@@ -119,7 +119,6 @@ form.addEventListener("submit", addTransaction);
 
 filter.addEventListener("change", updateDOM);
 
-
 list.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
     const transactionId = Number(e.target.dataset.id);
