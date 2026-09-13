@@ -166,7 +166,7 @@ input {
   outline: 0;
 }
 
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .container3 {
     flex-direction: column;
     gap: 15px;
