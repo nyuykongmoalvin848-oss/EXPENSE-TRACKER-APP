@@ -146,6 +146,24 @@ input {
   display: block;
   width: 50%;
   margin: 20px auto 30px;
+
+  background-color: #736e6e;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 11px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #5c5858;
+}
+
+.btn:focus {
+  outline: 0;
 }
 
 @media (width <= 768px) {
