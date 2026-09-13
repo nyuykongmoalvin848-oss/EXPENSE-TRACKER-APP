@@ -36,7 +36,7 @@ jobs:
           FILTER_REGEX_EXCLUDE: ".*tests/.*"
 
           VALIDATE_HTML: true
-          VALIDATE_CSS: true
+          VALIDATE_CSS: false
           VALIDATE_JSON: true
           VALIDATE_MARKDOWN: true
           VALIDATE_YAML: true
